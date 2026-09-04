@@ -5,6 +5,14 @@
 set -u
 cd "$(dirname "$0")/.."
 
+# The runner exports GITHUB_STEP_SUMMARY and GITHUB_OUTPUT into every step, including this one,
+# which is not the composite action step. Left set, src/gh.mjs's summary()/setOutput() write to
+# those files instead of stdout, and every assert_contains below reads $OUT and finds nothing.
+# Found 2026-09-04 when this suite passed locally (neither var is set on a laptop shell) and
+# failed in the repository's own CI. Unset once, here, so every invocation below is deterministic
+# regardless of which runner or shell it executes under.
+unset GITHUB_STEP_SUMMARY GITHUB_OUTPUT
+
 TMP="$(mktemp -d)"
 STUB_PID=""
 FAIL=0
