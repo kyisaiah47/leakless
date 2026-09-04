@@ -1,0 +1,79 @@
+name: 'BreachProbe deployment scan'
+description: 'Scan a deployed URL with BreachProbe and fail the build on an exposed database or an open write path.'
+author: 'Kynth Studios'
+
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  url:
+    description: 'The deployed URL to scan. Required.'
+    required: true
+  owner-confirmed:
+    description: >-
+      Must be the literal string "true". BreachProbe's scan endpoint refuses a request without
+      this attestation, and this action will not supply it on your behalf. Set this only for a
+      URL you actually own or are authorised to scan.
+    required: true
+  min-grade:
+    description: 'A, B, C, D or F. Fail when the scan grade is at or below this. Default F.'
+    required: false
+    default: 'F'
+  fail-on-database-exposure:
+    description: 'Fail when a table returns real rows to an anonymous request. Default true.'
+    required: false
+    default: 'true'
+  fail-on-write-path:
+    description: >-
+      Fail on a credential that bypasses row-level security (a service-role or secret key shipped
+      to the browser) or a row-level-security policy that does not enforce tenant isolation.
+      Default true.
+    required: false
+    default: 'true'
+  api:
+    description: 'BreachProbe base URL. Only change this to point at a local BreachProbe.'
+    required: false
+    default: 'https://breachprobe.kynth.studio'
+  timeout:
+    description: 'Seconds to wait on the scan before the run becomes exit 2. Default 90.'
+    required: false
+    default: '90'
+
+outputs:
+  reachable:
+    description: 'Whether the scan could reach the URL at all.'
+    value: ${{ steps.leakless.outputs.reachable }}
+  score:
+    description: 'The scan score, 0 to 100, or empty when unreachable.'
+    value: ${{ steps.leakless.outputs.score }}
+  grade:
+    description: 'The scan grade, A to F, or empty when unreachable.'
+    value: ${{ steps.leakless.outputs.grade }}
+  findings:
+    description: 'How many findings the scan returned.'
+    value: ${{ steps.leakless.outputs.findings }}
+  report-url:
+    description: 'Link to the full BreachProbe report for this scan, when one was persisted.'
+    value: ${{ steps.leakless.outputs.report-url }}
+  report-path:
+    description: 'Path to the full JSON response, written under RUNNER_TEMP.'
+    value: ${{ steps.leakless.outputs.report-path }}
+
+runs:
+  using: 'composite'
+  steps:
+    # Composite rather than a JavaScript action for one reason: this repository is ESM with no
+    # build step and no dependencies, and `node <file>.mjs` is unambiguous about that. There is
+    # nothing to install, nothing to bundle, and no dist/ that can drift from src/.
+    - id: leakless
+      shell: bash
+      run: node "$GITHUB_ACTION_PATH/bin/leakless.mjs"
+      env:
+        LEAKLESS_URL: ${{ inputs.url }}
+        LEAKLESS_OWNER_CONFIRMED: ${{ inputs.owner-confirmed }}
+        LEAKLESS_MIN_GRADE: ${{ inputs.min-grade }}
+        LEAKLESS_FAIL_ON_DATABASE: ${{ inputs.fail-on-database-exposure }}
+        LEAKLESS_FAIL_ON_WRITE_PATH: ${{ inputs.fail-on-write-path }}
+        LEAKLESS_API: ${{ inputs.api }}
+        LEAKLESS_TIMEOUT: ${{ inputs.timeout }}

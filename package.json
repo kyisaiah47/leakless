@@ -1,0 +1,43 @@
+{
+  "name": "leakless",
+  "version": "0.1.0",
+  "description": "GitHub Action: scan a deployed URL with BreachProbe and fail the build on an exposed database or an open write path.",
+  "type": "module",
+  "bin": {
+    "leakless": "bin/leakless.mjs"
+  },
+  "files": [
+    "action.yml",
+    "bin",
+    "src",
+    "test",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bash test/run.sh",
+    "gate": "node bin/leakless.mjs gate"
+  },
+  "keywords": [
+    "github-actions",
+    "security",
+    "breachprobe",
+    "supabase",
+    "ci",
+    "gate"
+  ],
+  "license": "MIT",
+  "author": "Kynth Studios (https://kynth.studio)",
+  "homepage": "https://github.com/kyisaiah47/leakless#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyisaiah47/leakless.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kyisaiah47/leakless/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

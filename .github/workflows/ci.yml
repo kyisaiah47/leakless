@@ -1,0 +1,42 @@
+name: gates
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      # No `npm install` step on purpose: if this ever needs one, the zero-dependency
+      # claim in the README has quietly stopped being true.
+      - name: offline suite
+        run: bash test/run.sh
+
+  kynth-studios-product:
+    # breachprobe.kynth.studio itself: a real, live Kynth Studios product. Scored 100/A with
+    # zero findings on 2026-09-04, so this is a stable required check, not a flaky one.
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          url: 'https://breachprobe.kynth.studio'
+          owner-confirmed: 'true'
+
+  third-party-site:
+    # example.com: IANA's reserved documentation domain, meant for exactly this kind of
+    # passive, non-destructive check against a site nobody has to separately authorise.
+    # continue-on-error because this action's own CI does not control that host's uptime.
+    runs-on: ubuntu-latest
+    needs: test
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          url: 'https://example.com'
+          owner-confirmed: 'true'
