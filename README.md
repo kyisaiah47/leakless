@@ -191,4 +191,4 @@ thing this build never ships with again. No `--force`, no allowlist, no known-is
 
 ## Licence
 
-MIT. Built and used in production by [Kynth Studios](https://kynth.studio).
+MIT. Built and used in production by [Compound Labs](https://thecompound.tech).

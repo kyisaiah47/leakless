@@ -152,7 +152,7 @@ const run = async () => {
   }
   md +=
     `<sub>Scanned live by [BreachProbe](https://breachprobe.kynth.studio) against \`${result.host}\`, ` +
-    `just now. leakless is built and used in production by [Kynth Studios](https://kynth.studio).</sub>\n`;
+    `just now. leakless is built and used in production by [Compound Labs](https://thecompound.tech).</sub>\n`;
 
   summary(md);
 

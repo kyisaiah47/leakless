@@ -1,6 +1,6 @@
 name: 'BreachProbe deployment scan'
 description: 'Scan a deployed URL with BreachProbe and fail the build on an exposed database or an open write path.'
-author: 'Kynth Studios'
+author: 'Compound Labs'
 
 branding:
   icon: 'shield'
