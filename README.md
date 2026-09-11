@@ -4,7 +4,7 @@
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](package.json)
 
-A GitHub Action that scans a deployed URL with [BreachProbe](https://breachprobe.kynth.studio)
+A GitHub Action that scans a deployed URL with [BreachProbe](https://breachprobe.thecompound.tech)
 and fails the build on an exposed database or an open write path.
 
 A green test suite proves the code you wrote compiles and does what its own tests expect. It says
@@ -35,7 +35,7 @@ The cross-tenant probe did not run. Everything above is real and was measured on
 the database and row-level-security checks are Supabase-specific, and nothing here was scored as
 if isolation had been tested and passed.
 
-Full report: https://breachprobe.kynth.studio/report/c7af1935-0d4b-4245-b282-c79a5858c2ab
+Full report: https://breachprobe.thecompound.tech/report/c7af1935-0d4b-4245-b282-c79a5858c2ab
 ```
 
 Every finding here is `headers`, medium or low severity, so the job passes (exit 0): neither
@@ -85,7 +85,7 @@ jobs:
 | `min-grade` | `F` | `A`, `B`, `C`, `D` or `F`. Fail when the scan grade is at or below this. |
 | `fail-on-database-exposure` | `true` | Fail when a table returns real rows to an anonymous request. |
 | `fail-on-write-path` | `true` | Fail on a credential that bypasses row-level security, or a policy that does not enforce tenant isolation. |
-| `api` | `https://breachprobe.kynth.studio` | BreachProbe base URL. Only change this to point at a local BreachProbe. |
+| `api` | `https://breachprobe.thecompound.tech` | BreachProbe base URL. Only change this to point at a local BreachProbe. |
 | `timeout` | `90` | Seconds to wait on the scan before the run becomes exit 2. |
 
 ### Outputs

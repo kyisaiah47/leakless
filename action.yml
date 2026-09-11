@@ -34,7 +34,7 @@ inputs:
   api:
     description: 'BreachProbe base URL. Only change this to point at a local BreachProbe.'
     required: false
-    default: 'https://breachprobe.kynth.studio'
+    default: 'https://breachprobe.thecompound.tech'
   timeout:
     description: 'Seconds to wait on the scan before the run becomes exit 2. Default 90.'
     required: false

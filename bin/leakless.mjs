@@ -35,7 +35,7 @@ Environment, which is how the action passes its inputs:
   LEAKLESS_MIN_GRADE            A, B, C, D or F; fail at or below this grade. Default F
   LEAKLESS_FAIL_ON_DATABASE     false to stop failing on an exposed database. Default true
   LEAKLESS_FAIL_ON_WRITE_PATH   false to stop failing on an open write path. Default true
-  LEAKLESS_API                  BreachProbe base URL, default https://breachprobe.kynth.studio
+  LEAKLESS_API                  BreachProbe base URL, default https://breachprobe.thecompound.tech
   LEAKLESS_TIMEOUT              seconds before the run becomes exit 2, default 90
 
 Exit codes:  0 clean  ·  1 exposed database, open write path, or below the grade floor  ·  2 could not check
