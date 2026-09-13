@@ -36,7 +36,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { annotate, summary, setOutput, fetchJson } from './gh.mjs';
 
-const API = (process.env.LEAKLESS_API || 'https://breachprobe.kynth.studio').replace(/\/+$/, '');
+const API = (process.env.LEAKLESS_API || 'https://breachprobe.thecompound.tech').replace(/\/+$/, '');
 const URL_INPUT = (process.env.LEAKLESS_URL || '').trim();
 const OWNER_CONFIRMED = (process.env.LEAKLESS_OWNER_CONFIRMED || '').trim().toLowerCase() === 'true';
 const FAIL_ON_DATABASE = (process.env.LEAKLESS_FAIL_ON_DATABASE ?? 'true').toLowerCase() !== 'false';
@@ -151,7 +151,7 @@ const run = async () => {
     md += `Full report: ${reportUrl}\n\n`;
   }
   md +=
-    `<sub>Scanned live by [BreachProbe](https://breachprobe.kynth.studio) against \`${result.host}\`, ` +
+    `<sub>Scanned live by [BreachProbe](https://breachprobe.thecompound.tech) against \`${result.host}\`, ` +
     `just now. leakless is built and used in production by [Compound Labs](https://thecompound.tech).</sub>\n`;
 
   summary(md);

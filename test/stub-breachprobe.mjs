@@ -5,7 +5,7 @@
  * ⛔ IT IS NOT A SECOND SCANNER AND MUST NEVER BECOME ONE. It returns canned results so the tests
  * can assert what the GATE does with a result. Whether BreachProbe's scoring or its scan engine
  * are right is BreachProbe's own job. The response shape is transcribed from a real
- * POST /api/scan against https://breachprobe.kynth.studio, read 2026-09-04 (see README): `url`,
+ * POST /api/scan against https://breachprobe.thecompound.tech, read 2026-09-04 (see README): `url`,
  * `host`, `reachable`, `supabaseDetected`, `score`, `grade`, `counts`, `summary`, `scannedAt`,
  * `findings[]` of `{ id, category, severity, title, detail }`, `rlsTeaser`, and `scanId`.
  *
