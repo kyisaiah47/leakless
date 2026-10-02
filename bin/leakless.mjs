@@ -56,7 +56,7 @@ const FLAGS = {
   '--timeout': 'LEAKLESS_TIMEOUT',
 };
 
-if (cmd === '-h' || cmd === '--help' || cmd === 'help') {
+if (cmd === 'help' || argv.includes('-h') || argv.includes('--help')) {
   console.log(HELP);
   process.exit(0);
 }

@@ -133,9 +133,13 @@ grade floor is a coarser net underneath both.
 ## Local use
 
 ```sh
-npm i -D leakless
+npm i -D github:kyisaiah47/leakless
 npx leakless gate --url https://example.com --owner-confirmed true
 ```
+
+The name `leakless` on the npm registry belongs to an unrelated package, so `npm i -D leakless`
+installs a different tool. Install from this GitHub repository as shown, and run `npx leakless`
+only in a project where that install has run.
 
 No build step, no bundler, zero runtime dependencies. Flags map onto the same environment
 variables the action sets, so a local run and a CI run cannot diverge.
