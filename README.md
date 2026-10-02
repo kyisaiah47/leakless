@@ -1,5 +1,13 @@
 # leakless
 
+> **leakless is now part of [ShipProbe](https://github.com/kyisaiah47/shipprobe).** ShipProbe
+> replaces leakless, stubless, glanceless and deferless with one CLI and one GitHub Action. The
+> checks this Action asks BreachProbe for are `shipprobe security`, which runs them on your own
+> runner against a deployed URL; `--hosted` adds BreachProbe's signed-in cross-tenant probe.
+> `kyisaiah47/leakless@v1` keeps working and is not changed. For a new workflow, use
+> `kyisaiah47/shipprobe@v1` with `command: security`. Documentation:
+> [shipprobe.thecompound.tech/security](https://shipprobe.thecompound.tech/security).
+
 [![gates](https://github.com/kyisaiah47/leakless/actions/workflows/ci.yml/badge.svg)](https://github.com/kyisaiah47/leakless/actions/workflows/ci.yml)
 [![licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 [![dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](package.json)
